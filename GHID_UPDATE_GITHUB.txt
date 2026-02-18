@@ -1,0 +1,57 @@
+GHID DE LUCRU ȘI REACTUALIZARE (SENTINEL ENFORCER)
+==================================================
+
+ACEST FOLDER (`SentinelUpdateRepo`) ESTE PARTEA PUBLICĂ A PROIECTULUI.
+Conține DOAR fișierul `version.xml` necesar pentru Auto-Update.
+
+-----------------------------------------------------------------------
+PENTRU UTILIZATOR (ROBERT): CUM LANSEZI O VERSIUNE NOUĂ
+-----------------------------------------------------------------------
+Când ai modificat codul și ai un `SentinelLauncher.exe` nou:
+
+1.  **GitHub Releases:**
+    - Mergi la: https://github.com/Robbylik/SentinelSelect/releases
+    - Apasă "Draft a new release".
+    - Tag: `v2.4` (sau numărul nou).
+    - Titlu: `Versiunea 2.4`.
+    - Încarcă noul `SentinelLauncher.exe` la "Attach binaries".
+    - Apasă "Publish release".
+    - Copiază LINK-ul de download al fișierului exe (Click dreapta -> Copy Link).
+
+2.  **Actualizare XML:**
+    - Deschide fișierul `version.xml` din acest folder.
+    - Modifică `<version>2.4.0.0</version>` (trebuie să fie mai mare decât cea veche).
+    - Modifică `<url>LINKUL_NOU_DE_PE_GITHUB</url>`.
+    - Salvează.
+
+3.  **Trimite Modificarea (Push):**
+    - Din acest folder, rulează comenzile (sau folosește interfața Git):
+      `git add .`
+      `git commit -m "Update la versiunea 2.4"`
+      `git push`
+
+GATA! În momentul ăsta, toate calculatoarele care au Sentinel instalat își vor face update singure la restart.
+
+-----------------------------------------------------------------------
+PENTRU VIITORII AGENTI AI (CONTEXT TEHNIC)
+-----------------------------------------------------------------------
+Dacă ești un AI care a preluat acest proiect, iată ce trebuie să știi:
+
+1.  **Arhitectura Split-Repo:**
+    - **Codul Sursă (C#):** Este PRIVAT/LOCAL în `d:\Proiecte\Stop_program`. NU are Git activ pentru a proteja IP-ul și fișierele mari.
+    - **Update Repo (XML):** Este PUBLIC în `d:\Proiecte\Stop_program\SentinelUpdateRepo` și legat la GitHub (`Robbylik/SentinelSelect`).
+
+2.  **Fluxul de Lucru (Build):**
+    - Proiectul este un `WPF` (.NET 8).
+    - Comanda de build pentru Release (Single File):
+      `dotnet publish "SentinelLauncher.csproj" -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o "d:\Proiecte\Stop_program\Final_Build_Standalone"`
+
+3.  **Hacking & Securitate:**
+    - Aplicația folosește `SetWindowsHookEx` (Low-Level Keyboard Hook) în `KioskEngine.cs`.
+    - Blochează `Alt+F4`, `Ctrl+Esc`, `Alt+Tab`, `WinKey`, `F11`.
+    - Blochează ferestrele de File Explorer (`CabinetWClass`) în bucla `Watchdog`.
+    - Blochează Task Manager și Sticky Keys prin `Registry`.
+
+4.  **Auto-Update:**
+    - Folosește `AutoUpdater.NET`.
+    - URL-ul de check este hardcodat în `kiosk_config.json` de la client, care pointează către `version.xml` din acest repo public.
