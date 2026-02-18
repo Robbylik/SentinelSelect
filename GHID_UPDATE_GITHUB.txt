@@ -24,6 +24,10 @@ Când ai modificat codul și ai un `SentinelLauncher.exe` nou:
     - Modifică `<url>LINKUL_NOU_DE_PE_GITHUB</url>`.
     - Salvează.
 
+    **[CRITIC] NOTĂ PENTRU AGENȚI AI:**
+    Când actualizezi `version.xml`, TREBUIE să actualizezi și acest ghid (`GHID_UPDATE_GITHUB.txt`) cu noua versiune!
+    Versiunea curentă în XML este: **2.0.0.0** (Actualizează această cifră aici când faci bump la versiune).
+
 3.  **Trimite Modificarea (Push):**
     - Din acest folder, rulează comenzile (sau folosește interfața Git):
       `git add .`
