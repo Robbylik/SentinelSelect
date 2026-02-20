@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <item>
-    <version>2.4.5.0</version>
-    <url>https://github.com/Robbylik/SentinelSelect/releases/download/v2.4.5/SentinelLauncher.zip</url>
-    <changelog>https://github.com/Robbylik/SentinelSelect/releases/tag/v2.4.5</changelog>
+    <version>2.4.6.0</version>
+    <url>https://github.com/Robbylik/SentinelSelect/releases/download/v2.4.6/SentinelLauncher.zip</url>
+    <changelog>https://github.com/Robbylik/SentinelSelect/releases/tag/v2.4.6</changelog>
     <mandatory>true</mandatory>
 </item>
